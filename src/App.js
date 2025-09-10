@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+ import ClaimForm from './components/ClaimForm';
+import ClaimLookup from './components/ClaimLookup';
+import Counter from './components/Counter';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { useState } from 'react';
 
+import './index.css'
+import './App.css'
 function App() {
+  const [fname, setFname] = useState('');
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="app">
+
+
+
+          <Router>
+              <nav>
+                <ul className="horizontal-menu">
+                  <li><Link to="/">Claim Form</Link></li>
+                  <li><Link to="/lookup">Claim Lookup</Link></li>
+                   <li><Link to="/counter">Counter </Link></li>
+                </ul>
+              </nav>
+
+          {fname && <h2>Welcome , {fname}</h2>}
+            <Routes>
+                <Route path='/' element={<ClaimForm/>} />
+                <Route path='/Lookup' element={<ClaimLookup/>} />
+                <Route path='/counter' element={<Counter setFname={setFname} />} />
+                <Route path='*' element={<h2>Page Not Found</h2>} />
+            </Routes>
+          </Router>
+
+
+        
+   </div>
   );
 }
 

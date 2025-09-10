@@ -1,0 +1,57 @@
+/* ClaimForm.module.css */
+
+.ClaimFormContainer{
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+
+.claimForm {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  max-width: 400px;
+  margin: 60px auto;
+}
+
+.inputField {
+  margin-bottom: 10px;
+  width: 90%;
+  padding: 8px;
+  font-size: 14px;
+}
+.errorText {
+  color: red;
+}
+
+.checkboxLabel {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.submitBtn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submitBtn:hover {
+  background-color: #0056b3;
+}
+
+.flagList {
+  margin-top: 20px;
+  padding-left: 20px;
+}
+
+.flagItem {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
