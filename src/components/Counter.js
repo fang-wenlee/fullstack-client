@@ -37,7 +37,7 @@ const handleSubmit = (e) =>{
 
       <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md border border-gray-200">
       <h2 className="text-xl font-bold text-gray-800 mb-4">
-        Display input Name to Parent component
+        Passing Callback to Child after enter input name  and click submit button 
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">

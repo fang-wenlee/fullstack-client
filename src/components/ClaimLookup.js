@@ -29,7 +29,7 @@ function ClaimLookup(){
 
 
          try{
-               const res  = await axios.get(`http://localhost:3001/lookupClaim/${id}`);
+               const res  = await axios.get(`http://localhost:3002/lookupClaim/${id}`);
                console.log("Response:", res.data);
                setClaimData(res.data);
 

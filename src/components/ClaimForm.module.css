@@ -12,8 +12,8 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   background-color: #f9f9f9;
-  max-width: 400px;
-  margin: 60px auto;
+  min-width: 600px;
+  margin: 50px auto;
 }
 
 .inputField {

@@ -22,7 +22,7 @@ export default function ClaimForm() {
   const [inputError, setInputError] = useState('');
 
   useEffect(() => {
-    console.log("Updated flags:", flags);
+   // console.log("Updated flags:", flags);
   }, [flags]);
 
 
@@ -30,17 +30,23 @@ export default function ClaimForm() {
 
 
   const handleChange = (e) => {
+    
+
+setFlags([]);
+
     const { name, type, value, checked } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
+
+   
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
+ 
     if (!formData.procedureCode.trim()) {
     setInputError('Procedure Code is required.');
     return;
@@ -52,7 +58,7 @@ export default function ClaimForm() {
   setInputError(''); // Clear any previous error
 
                 try{
-                    const res = await axios.post('http://localhost:3001/validate-claim', formData);
+                    const res = await axios.post('http://localhost:3002/validate-claim', formData);
                     console.log("response: ", res.data);
                     console.log("Flags raw:", res.data.flag);
                     setFlags(res.data.flag);
@@ -68,6 +74,7 @@ export default function ClaimForm() {
 
  <form onSubmit={handleSubmit} className={styles.claimForm}>
      {inputError && <span className={styles.errorText}>{inputError}</span>}
+     
       <input
         name="procedureCode"
         placeholder="Procedure Code"
@@ -108,10 +115,13 @@ export default function ClaimForm() {
         ))}
       </ul>
     </form>
+
+ </div>
+
   );
 
 
 
-    </div>
+   
    
 }
