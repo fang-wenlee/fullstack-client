@@ -1,43 +1,38 @@
-
 import React, { useState } from 'react';
 import './../index.css';
+import PropTypes from 'prop-types';
 
 function PassingCallbackToParent(props) {
- const { setFname } = props;
+  const { setFname } = props;
 
-     const [inputError, setInputError] = useState('');
+  const [inputError, setInputError] = useState('');
 
-
-const handleSubmit = (e) =>{
-
-   const value = e.target.fName.value;
+  const handleSubmit = e => {
+    const value = e.target.fName.value;
 
     e.preventDefault();
-    if(!value.trim()){
+    if (!value.trim()) {
       setInputError('Please enter a name');
       return;
     }
-    
+
     //  if (/^[a-zA-Z\s]*$/.test(value) && typeof value === 'string') {
 
-      if (!/^[a-zA-Z\s]*$/.test(value)) {
-          setInputError('Name can only contain letters and spaces'); 
+    if (!/^[a-zA-Z\s]*$/.test(value)) {
+      setInputError('Name can only contain letters and spaces');
       return;
     }
-    
-    
+
     setInputError('');
 
+    setFname(e.target.fName.value);
+    e.target.fName.value = '';
+  };
 
-    setFname(e.target.fName.value)
-    e.target.fName.value = "";
-}
-
-   return(
-
-      <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md border border-gray-200">
+  return (
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md border border-gray-200">
       <h2 className="text-xl font-bold text-gray-800 mb-4">
-        Passing Callback to Child after enter input name  and click submit button 
+        Passing Callback to Child after enter input name and click submit button
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -50,7 +45,7 @@ const handleSubmit = (e) =>{
         <input
           type="text"
           name="fName"
-          placeholder="Enter Name"        
+          placeholder="Enter Name"
           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
         />
 
@@ -62,10 +57,11 @@ const handleSubmit = (e) =>{
         </button>
       </form>
     </div>
-
-
-
-    );
+  );
 }
 
-export default PassingCallbackToParent; 
+PassingCallbackToParent.propTypes = {
+  setFname: PropTypes.func.isRequired,
+};
+
+export default PassingCallbackToParent;
