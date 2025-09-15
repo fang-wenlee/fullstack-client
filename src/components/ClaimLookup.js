@@ -22,6 +22,12 @@ const sxStyle = {
     display: 'flex',
     alignItems: 'center',
     gap: 1,
+    mt: 2,
+  },
+  error: {
+    color: 'red',
+    fontSize: '0.875rem',
+    // marginBottom: '8px',
   },
 };
 
@@ -41,6 +47,7 @@ function ClaimLookup() {
     }
 
     setInputError('');
+    setId('');
     console.log('Submitted id:', id);
     // You can add further processing here, like sending the ID to a server
 
@@ -61,7 +68,11 @@ function ClaimLookup() {
         sx={sxStyle.lookupContainer}
         onSubmit={handleSubmit}
       >
-        {inputError && <span>{inputError}</span>}
+        {inputError && (
+          <Box component="span" sx={sxStyle.error}>
+            {inputError}
+          </Box>
+        )}
 
         {/* <input  
           type="text"
@@ -74,6 +85,7 @@ function ClaimLookup() {
           id="outlined-basic"
           label="Claim ID"
           variant="outlined"
+          value={id}
           onChange={e => setId(e.target.value)}
         />
         <Box sx={sxStyle.bntContainer}>
@@ -106,29 +118,30 @@ function ClaimLookup() {
             Lookup Claim
           </Button>
         </Box>
+
+        <div className="claim-details">
+          {claimData && Object.keys(claimData).length > 0 && (
+            <div>
+              <h3>Claim Details:</h3>
+              <p>
+                <strong>ID:</strong> {claimData.id}
+              </p>
+              <p>
+                <strong> Claimant:</strong> {claimData.claimant}
+              </p>
+              <p>
+                <strong>Amount:</strong> {claimData.amount}
+              </p>
+              <p>
+                <strong>Status:</strong> {claimData.status}
+              </p>
+              <p>
+                <strong>Submitted At:</strong> {claimData.submittedAt}
+              </p>
+            </div>
+          )}
+        </div>
       </Box>
-      <div className="claim-details">
-        {claimData && Object.keys(claimData).length > 0 && (
-          <div>
-            <h3>Claim Details:</h3>
-            <p>
-              <strong>ID:</strong> {claimData.id}
-            </p>
-            <p>
-              <strong>Claimant:</strong> {claimData.claimant}
-            </p>
-            <p>
-              <strong>Amount:</strong> {claimData.amount}
-            </p>
-            <p>
-              <strong>Status:</strong> {claimData.status}
-            </p>
-            <p>
-              <strong>Submitted At:</strong> {claimData.submittedAt}
-            </p>
-          </div>
-        )}
-      </div>
     </>
   );
 }
