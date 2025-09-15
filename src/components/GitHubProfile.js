@@ -8,7 +8,9 @@ const GitHubProfile = () => {
 
   const fetchProfile = async () => {
     try {
-      const res = await axios.get(`http://localhost:3002/github/user/${username}`);
+      const res = await axios.get(
+        `http://localhost:3002/github/user/${username}`
+      );
       setProfile(res.data);
       setError('');
     } catch (err) {
@@ -23,7 +25,7 @@ const GitHubProfile = () => {
         type="text"
         placeholder="GitHub username"
         value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={e => setUsername(e.target.value)}
       />
       <button onClick={fetchProfile}>Fetch Profile</button>
 

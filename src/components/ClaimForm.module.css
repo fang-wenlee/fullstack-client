@@ -1,11 +1,10 @@
 /* ClaimForm.module.css */
 
-.ClaimFormContainer{
+.ClaimFormContainer {
   display: flex;
   justify-content: center;
   margin-top: 40px;
 }
-
 
 .claimForm {
   padding: 20px;
