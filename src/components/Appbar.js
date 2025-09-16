@@ -45,19 +45,37 @@ const styled = {
     flexGrow: 1,
     display: { xs: 'flex', md: 'none' },
   },
+  menuMobile: {
+    display: { xs: 'block', md: 'none' },
+  },
   sumMenuBox: {
     flexGrow: 1,
     display: { xs: 'none', md: 'flex' },
   },
-  menu: {
+  menuBtn: {
     // my is for vertical margin
     my: 2,
     color: 'white',
     display: 'block',
     marginRight: '20px',
   },
+  menu: {
+    mt: '47px',
+  },
   menuItem: {
     textAlign: 'center',
+  },
+  tooltip: {
+    whiteSpace: 'pre-line',
+    maxWidth: 350,
+    lineHeight: 1.4,
+    fontSize: 15,
+    margin: '10px',
+    backgroundColor: '#6d6c6cff',
+    color: '#fff',
+    padding: '15px 19px',
+    borderRadius: 2,
+    opacity: 0.7,
   },
 };
 
@@ -115,7 +133,7 @@ function ResponsiveAppBar() {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
+              sx={styled.menuMobile}
             >
               {domains.map(domain => (
                 <MenuItem
@@ -125,9 +143,7 @@ function ResponsiveAppBar() {
                     handleCloseNavMenu();
                   }}
                 >
-                  <Typography sx={{ textAlign: 'center' }}>
-                    {domain.label}
-                  </Typography>
+                  <Typography sx={styled.menuItem}>{domain.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -142,17 +158,7 @@ function ResponsiveAppBar() {
                 key={domain.label}
                 componentsProps={{
                   tooltip: {
-                    sx: {
-                      whiteSpace: 'pre-line',
-                      maxWidth: 350,
-                      lineHeight: 1.4,
-                      fontSize: 15,
-                      margin: '10px',
-                      backgroundColor: '#6d6c6cff',
-                      color: '#fff',
-                      padding: '15px 19px',
-                      borderRadius: 2,
-                    },
+                    sx: styled.tooltip,
                   },
                 }}
               >
@@ -166,7 +172,7 @@ function ResponsiveAppBar() {
                     }
                     handleCloseNavMenu();
                   }}
-                  sx={styled.menu}
+                  sx={styled.menuBtn}
                 >
                   {domain.label}
                 </Button>
@@ -177,12 +183,12 @@ function ResponsiveAppBar() {
           {/*  avatar on the right side  with dropdown menu */}
           <Box>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu}>
                 <Avatar alt="Fang-Wen Lee" src={me} />
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '47px' }}
+              sx={styled.menu}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
