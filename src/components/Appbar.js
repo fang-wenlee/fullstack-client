@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 
 const domains = [
   {
-    label: 'My React Playground',
+    label: 'My React Playgrounds',
     path: 'https://fangwenlee.netlify.app/',
     desc: 'A curated showcase of my front-end development journey—featuring my professional resume, portfolio, and a growing collection of React-based mini projects. Explore clean UI components, responsive layouts, and hands-on experiments that reflect my passion for building elegant, maintainable web applications.',
   },
@@ -28,7 +28,7 @@ const domains = [
   },
 
   {
-    label: '2025 React Projects',
+    label: 'My React Projects',
     path: '/projects',
     desc: 'A collection of React projects demonstrating various concepts and functionalities, including state management, routing, API integration, and component design. Each project is a hands-on example of building interactive and dynamic web applications using React.',
   },
