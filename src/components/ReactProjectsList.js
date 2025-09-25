@@ -152,7 +152,9 @@ const ReactProjectsList = () => {
                 style={{ marginLeft: '-20px', marginTop: '8px' }}
               >
                 <li>
-                  <Link to="/usememo3">useMemo</Link>
+                  <Link to="/usememo3">
+                    useMemo [Mock Items, use reduce() to sum up total]
+                  </Link>
                 </li>
               </Box>
 
