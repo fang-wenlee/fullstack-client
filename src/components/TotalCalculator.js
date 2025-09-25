@@ -36,16 +36,12 @@ function TotalCalculator() {
     setItems(updated);
   };
 
-  // const total = useMemo(() => {
-  //   console.log('🧠 useMemo: Calculating total...');
-
-  //   if (!Array.isArray(items)) return 0;
-  //   return items.reduce((sum, item) => {
-  //     const price = Number(item.price);
-  //     const quantity = Number(item.quantity);
-  //     return sum + (Number.isFinite(price * quantity) ? price * quantity : 0);
-  //   }, 0);
-  // }, [items]);
+  const handleQuantityChange = (id, newQuantity) => {
+    const updated = items.map(item =>
+      item.id === id ? { ...item, quantity: Number(newQuantity) } : item
+    );
+    setItems(updated);
+  };
 
   const total = useMemo(() => {
     console.log('🧠 useMemo: Calculating total...');
@@ -59,16 +55,26 @@ function TotalCalculator() {
       <ul>
         {items.map(item => (
           <li key={item.id}>
-            {item.name} × {item.quantity} = $
-            {(item.price * item.quantity).toFixed(2)}
+            {item.name} – ${item.price.toFixed(2)} ×{' '}
+            <select
+              value={item.quantity}
+              onChange={e => handleQuantityChange(item.id, e.target.value)}
+            >
+              {[...Array(10)].map((_, i) => (
+                <option key={i + 1} value={i + 1}>
+                  {i + 1}
+                </option>
+              ))}
+            </select>{' '}
+            = ${(item.price * item.quantity).toFixed(2)}
           </li>
         ))}
       </ul>
+
       <h3>Total: ${total.toFixed(2)}</h3>
       <Button variant="contained" onClick={() => setCount(prev => prev + 1)}>
         Re-render (count: {count})
       </Button>
-
       <Button variant="contained" onClick={updateQuantity}>
         Add One More T-shirt
       </Button>
