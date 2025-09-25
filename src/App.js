@@ -9,8 +9,10 @@ import Appbar from './components/Appbar';
 
 import { Box } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+//=================================================================
 import UserSearch from './components/UserSearch';
 import UserSearchApi from './components/UserSearchApi';
+import TotalCalculator from './components/TotalCalculator';
 import './index.css';
 import './App.css';
 
@@ -59,6 +61,7 @@ function App() {
             element={<UserSearch users={sampleUsers} />}
           />
           <Route path="/usememo2" element={<UserSearchApi />} />
+          <Route path="/usememo3" element={<TotalCalculator />} />
           <Route
             path="*"
             element={
