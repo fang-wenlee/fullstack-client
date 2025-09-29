@@ -13,6 +13,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UserSearch from './components/UserSearch';
 import UserSearchApi from './components/UserSearchApi';
 import TotalCalculator from './components/TotalCalculator';
+import Cart from './components/performance/Cart';
 import './index.css';
 import './App.css';
 
@@ -62,6 +63,8 @@ function App() {
           />
           <Route path="/usememo2" element={<UserSearchApi />} />
           <Route path="/usememo3" element={<TotalCalculator />} />
+
+          <Route path="/useCallback-memo" element={<Cart />} />
           <Route
             path="*"
             element={

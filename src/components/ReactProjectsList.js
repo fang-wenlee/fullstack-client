@@ -153,7 +153,14 @@ const ReactProjectsList = () => {
               >
                 <li>
                   <Link to="/usememo3">
-                    useMemo [Mock Items, use reduce() to sum up total]
+                    useMemo [Mock Items, use reduce() to sum up total] for
+                    shopping Cart
+                  </Link>
+                </li>
+
+                <li>
+                  <Link to="/useCallback-memo">
+                    useCallback + React.memo [ Cart + CartItem ]
                   </Link>
                 </li>
               </Box>
