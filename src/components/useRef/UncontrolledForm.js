@@ -75,11 +75,15 @@ function UncontrolledForm() {
         Phone: ${phone}`);
       // clear fields after submit
 
-      inputRef.current.firstName.value = '';
-      inputRef.current.lastName.value = '';
-      inputRef.current.email.value = '';
-      inputRef.current.company.value = '';
-      inputRef.current.phone.value = '';
+      // inputRef.current.firstName.value = '';
+      // inputRef.current.lastName.value = '';
+      // inputRef.current.email.value = '';
+      // inputRef.current.company.value = '';
+      // inputRef.current.phone.value = '';
+
+      Object.values(inputRef.current).forEach(field => {
+        if (field) field.value = '';
+      });
     }
   };
 
