@@ -97,6 +97,8 @@ function UncontrolledForm() {
   const handleChange = e => {
     const { type, value } = e.target;
 
+    clearTimeout(debounceTimer.current);
+
     debounceTimer.current = setTimeout(() => {
       validation(type, value);
     }, 500);
@@ -117,7 +119,9 @@ function UncontrolledForm() {
         Company
         <div className="person">
           <div className="column-row">
-            {errors.name && <span style={{ color: 'red' }}>{errors.name}</span>}{' '}
+            {errors.firstName && (
+              <span style={{ color: 'red' }}>{errors.firstName}</span>
+            )}{' '}
             <div className="column-label">FirstName</div>
             <input
               type="text"
