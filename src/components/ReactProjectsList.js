@@ -163,6 +163,15 @@ const ReactProjectsList = () => {
                     useCallback + React.memo [ Cart + CartItem ]
                   </Link>
                 </li>
+
+                {/* <li>
+                  <Link to="/useRef-Debouncing">useRef [ Debouncing ]</Link>
+                </li>
+                <li>
+                  <Link to="/useRef-UncontrolledForm">
+                    useRef [ Uncontrolled Input with useRef ]
+                  </Link>
+                </li> */}
               </Box>
 
               <Typography
@@ -180,11 +189,25 @@ const ReactProjectsList = () => {
             aria-controls="panel2-content"
             id="panel2-header"
           >
-            <Typography component="span">Accordion 2</Typography>
+            <Typography variant="h5" gutterBottom>
+              useRef for Debouncing , Uncontrolled Form{' '}
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            <Box
+              component="ul"
+              sx={style.ul}
+              style={{ marginLeft: '-20px', marginTop: '8px' }}
+            >
+              <li>
+                <Link to="/useRef-Debouncing">useRef [ Debouncing ]</Link>
+              </li>
+              <li>
+                <Link to="/useRef-UncontrolledForm">
+                  useRef [ Uncontrolled Input with useRef ]
+                </Link>
+              </li>
+            </Box>
           </AccordionDetails>
         </Accordion>
       </Box>
