@@ -14,6 +14,11 @@ import UserSearch from './components/UserSearch';
 import UserSearchApi from './components/UserSearchApi';
 import TotalCalculator from './components/TotalCalculator';
 import Cart from './components/performance/Cart';
+
+//================================================
+import DebounceSearch from './components/useRef/DebounceSearch';
+import UncontrolledForm from './components/useRef/UncontrolledForm';
+
 import './index.css';
 import './App.css';
 
@@ -53,18 +58,21 @@ function App() {
           <Route path="/claimform" element={<ClaimForm />} />
           <Route path="/Lookup" element={<ClaimLookup />} />
           <Route path="/counter" element={<Counter setFname={setFname} />} />
-
           <Route path="/profile" element={<GitHubProfile />} />
           <Route path="/projects" element={<ReactProjectsList />} />
-
           <Route
             path="/usememo1"
             element={<UserSearch users={sampleUsers} />}
           />
           <Route path="/usememo2" element={<UserSearchApi />} />
           <Route path="/usememo3" element={<TotalCalculator />} />
-
           <Route path="/useCallback-memo" element={<Cart />} />
+          <Route path="/useRef-Debouncing" element={<DebounceSearch />} />
+          UncontrolledForm
+          <Route
+            path="/useRef-UncontrolledForm"
+            element={<UncontrolledForm />}
+          />
           <Route
             path="*"
             element={
