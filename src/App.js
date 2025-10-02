@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ClaimForm from './components/ClaimForm';
 import ClaimLookup from './components/ClaimLookup';
-import Counter from './components/Counter';
+import Welcome from './components/Welcome';
 import GitHubProfile from './components/GitHubProfile';
 import ReactProjectsList from './components/ReactProjectsList';
 
@@ -27,12 +27,20 @@ const sampleUsers = [
   { id: 2, name: 'Bob Smith' },
   { id: 3, name: 'Charlie Davis' },
 ];
+const style = {
+  routerContainer: {
+    maxWidth: '56%',
+    display: 'flex',
+    flexDirection: 'column',
+    mx: 'auto',
+  },
+};
 
 function App() {
   const [fname, setFname] = useState('');
 
   return (
-    <div className="app">
+    <Box>
       <Router>
         {/* Appbar will replace the nav below */}
         <Appbar />
@@ -52,12 +60,13 @@ function App() {
             </li>
           </ul>
         </nav> */}
-
-        {fname && <h2>Welcome , {fname}</h2>}
+        <Box sx={style.routerContainer}>
+          {fname && <h2>Welcome , {fname}</h2>}
+        </Box>
         <Routes>
           <Route path="/claimform" element={<ClaimForm />} />
           <Route path="/Lookup" element={<ClaimLookup />} />
-          <Route path="/counter" element={<Counter setFname={setFname} />} />
+          <Route path="/welcome" element={<Welcome setFname={setFname} />} />
           <Route path="/profile" element={<GitHubProfile />} />
           <Route path="/projects" element={<ReactProjectsList />} />
           <Route
@@ -67,8 +76,11 @@ function App() {
           <Route path="/usememo2" element={<UserSearchApi />} />
           <Route path="/usememo3" element={<TotalCalculator />} />
           <Route path="/useCallback-memo" element={<Cart />} />
-          <Route path="/useRef-Debouncing" element={<DebounceSearch />} />
-          UncontrolledForm
+          <Route
+            path="/controledForm-useRef-Debouncing"
+            element={<DebounceSearch />}
+          />
+
           <Route
             path="/useRef-UncontrolledForm"
             element={<UncontrolledForm />}
@@ -87,7 +99,7 @@ function App() {
           />
         </Routes>
       </Router>
-    </div>
+    </Box>
   );
 }
 export default App;
