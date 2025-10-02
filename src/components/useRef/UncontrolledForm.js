@@ -2,20 +2,24 @@ import React, { useRef, useState } from 'react';
 import { Box } from '@mui/material';
 
 function UncontrolledForm() {
-  const firstNameRef = useRef();
-  const lastNameRef = useRef();
-  const emailRef = useRef();
+  const inputRef = useRef({
+    firstName: null,
+    lastName: null,
+    email: null,
+    company: null,
+    phone: null,
+  });
 
-  const companyRef = useRef();
-  const phoneRef = useRef();
+  const [isValid, setIsValid] = useState(null);
+  const [isValidTel, setIsValidTel] = useState(null);
   const [errors, setErrors] = useState({});
 
-  const debounceTimer = useRef(); //for email validation
+  const debounceTimer = useRef(); //for email and phone validation
 
   //style
   const style = {
     UncontrolledFormBox: {
-      maxWidth: 800,
+      maxWidth: 480,
       display: 'flex',
       flexDirection: 'column',
       gap: 2,
@@ -32,17 +36,17 @@ function UncontrolledForm() {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const firstName = firstNameRef.current?.value.trim();
-    const lastName = lastNameRef.current?.value.trim();
-    const email = emailRef.current?.value;
-    const company = companyRef.current?.value;
-    const phone = phoneRef.current?.value;
+    const firstName = inputRef.current.firstName?.value.trim();
+    const lastName = inputRef.current.lastName?.value.trim();
+    const email = inputRef.current.email?.value.trim();
+    const company = inputRef.current.company?.value.trim();
+    const phone = inputRef.current.phone?.value.trim();
 
     const newErrors = {};
 
     // Basic validation
     if (!firstName) {
-      newErrors.name = "First Name can't be empty";
+      newErrors.firstName = "First Name can't be empty";
     }
     if (!lastName) {
       newErrors.lastName = "Last Name can't be empty";
@@ -52,19 +56,11 @@ function UncontrolledForm() {
       newErrors.email = "email can't be empty";
     }
 
-    // if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    //   newErrors.email = 'Invalid email format';
-    // }
-
     if (!company) {
       newErrors.company = "Company name can't be empty";
     }
     if (!phone) {
       newErrors.phone = "Phone can't be empty";
-    }
-
-    if (phone && !/^\d{3}-\d{3}-\d{4}$/.test(phone)) {
-      newErrors.phone = 'Phone must be in format 123-456-7890';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -77,19 +73,43 @@ function UncontrolledForm() {
         Email: ${email}
         Company: ${company}
         Phone: ${phone}`);
-      // Optionally clear fields
-      firstNameRef.current.value = '';
-      lastNameRef.current.value = '';
-      emailRef.current.value = '';
-      companyRef.current.value = '';
-      phoneRef.current.value = '';
+      // clear fields after submit
+
+      // inputRef.current.firstName.value = '';
+      // inputRef.current.lastName.value = '';
+      // inputRef.current.email.value = '';
+      // inputRef.current.company.value = '';
+      // inputRef.current.phone.value = '';
+
+      Object.values(inputRef.current).forEach(field => {
+        if (field) field.value = '';
+      });
     }
   };
-  const handleChange = () => {
-    setErrors('');
+
+  const validation = (type, value) => {
+    if (type === 'email') {
+      const isValidFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      setIsValid(isValidFormat);
+    }
+
+    if (type === 'tel') {
+      const phoneRegex = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/.test(value);
+      setIsValidTel(phoneRegex);
+    }
+  };
+  const handleChange = e => {
+    const { type, value } = e.target;
+
+    clearTimeout(debounceTimer.current);
+
+    debounceTimer.current = setTimeout(() => {
+      validation(type, value);
+    }, 500);
   };
   return (
     <Box sx={style.UncontrolledFormBox}>
+      <h3>Uncontrolled form use ref to access DOM values </h3>
       <form id="contactForm" onSubmit={handleSubmit}>
         <input
           type="radio"
@@ -103,15 +123,17 @@ function UncontrolledForm() {
         Company
         <div className="person">
           <div className="column-row">
-            {errors.name && <span style={{ color: 'red' }}>{errors.name}</span>}{' '}
+            {errors.firstName && (
+              <span style={{ color: 'red' }}>{errors.firstName}</span>
+            )}{' '}
             <div className="column-label">FirstName</div>
             <input
               type="text"
               id="first_name"
               name="first_name"
               placeholder="Enter your first name:"
-              ref={firstNameRef}
-              onChange={handleChange}
+              ref={el => (inputRef.current.firstName = el)}
+              // onChange={handleChange}
             />
           </div>
           <div className="column-row">
@@ -124,42 +146,24 @@ function UncontrolledForm() {
               id="last_name"
               name="last_name"
               placeholder="Doe"
-              ref={lastNameRef}
+              ref={el => (inputRef.current.lastName = el)}
             />
           </div>
           <div className="column-row">
             {errors.email && (
               <span style={{ color: 'red' }}>{errors.email}</span>
             )}{' '}
+            {isValid === false && (
+              <span style={{ color: 'red' }}>❌ Invalid email</span>
+            )}
             <div className="column-label">Email:</div>
             <input
               type="email"
               id="email"
               name="email"
-              ref={emailRef}
+              ref={el => (inputRef.current.email = el)}
               placeholder="john@example.com"
-              onChange={() => {
-                clearTimeout(debounceTimer.current);
-                debounceTimer.current = setTimeout(() => {
-                  const email = emailRef.current?.value.trim();
-                  if (!email) {
-                    setErrors(prev => ({
-                      ...prev,
-                      email: "Email can't be empty",
-                    }));
-                  } else if (
-                    email &&
-                    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-                  ) {
-                    setErrors(prev => ({
-                      ...prev,
-                      email: 'Invalid email format',
-                    }));
-                  } else {
-                    setErrors({});
-                  }
-                }, 500); // 500ms debounce delay
-              }}
+              onChange={e => handleChange(e)}
             />
           </div>
         </div>
@@ -173,7 +177,7 @@ function UncontrolledForm() {
               type="text"
               id="company_name"
               name="company_name"
-              ref={companyRef}
+              ref={el => (inputRef.current.company = el)}
               placeholder="Snapwiz"
             />
           </div>
@@ -181,13 +185,17 @@ function UncontrolledForm() {
             {errors.phone && (
               <span style={{ color: 'red' }}>{errors.phone}</span>
             )}{' '}
+            {isValidTel === false && (
+              <span style={{ color: 'red' }}>❌ Invalid Tel</span>
+            )}
             <div className="column-label">Phone</div>
             <input
               type="tel"
               id="phone"
               name="phone"
               placeholder="234-567-890"
-              ref={phoneRef}
+              ref={el => (inputRef.current.phone = el)}
+              onChange={e => handleChange(e)}
             />
           </div>
         </div>
