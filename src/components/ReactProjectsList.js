@@ -78,6 +78,9 @@ const ReactProjectsList = () => {
 
       <Box component="ul" sx={style.ul}>
         <li>
+          <Link to="/welcome"> Passing setFname to a Child Component</Link>
+        </li>
+        <li>
           <Link to="/lookup">Claim Lookup with API Call</Link>
         </li>
         <li>
@@ -190,7 +193,7 @@ const ReactProjectsList = () => {
             id="panel2-header"
           >
             <Typography variant="h5" gutterBottom>
-              useRef for Debouncing , Uncontrolled Form{' '}
+              useRef for real-time validation and Uncontrolled Form{' '}
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -200,11 +203,13 @@ const ReactProjectsList = () => {
               style={{ marginLeft: '-20px', marginTop: '8px' }}
             >
               <li>
-                <Link to="/useRef-Debouncing">useRef [ Debouncing ]</Link>
+                <Link to="/controledForm-useRef-Debouncing">
+                  ControledForm with useRef for email validation{' '}
+                </Link>
               </li>
               <li>
                 <Link to="/useRef-UncontrolledForm">
-                  useRef [ Uncontrolled Input with useRef ]
+                  UnControledForm with useRef for email validation{' '}
                 </Link>
               </li>
             </Box>
