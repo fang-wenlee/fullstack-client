@@ -73,6 +73,8 @@ function ControledForm() {
 
     if (!formData.phone.trim()) {
       newErrors.phone = "phone can't be empty";
+    } else if (!isValidTel) {
+      return;
     }
     if (!formData.email.trim()) {
       newErrors.email = "Email can't be empty";
@@ -82,7 +84,11 @@ function ControledForm() {
       setErrors(newErrors);
     } else {
       alert(
-        `Submitted Data:\n Your Name: ${formData.firstName} ${formData.lastName} \nEmail: ${formData.email}`
+        `Submitted Data:
+         Your Name: ${formData.firstName} ${formData.lastName} 
+         Email: ${formData.email}
+         Phone: ${formData.phone}
+        `
       );
 
       setFormData(initialFormData);
