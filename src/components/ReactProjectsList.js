@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-
+// refer back to APP.js  :  Route Path
 import {
   Accordion,
   AccordionSummary,
@@ -91,6 +91,8 @@ const ReactProjectsList = () => {
           <Link to="/classComp"> Error showing: display Not Found Page</Link>
         </li>
       </Box>
+
+      <div>Hooks:</div>
       <Box component="div" sx={style.accordionBox}>
         <Accordion>
           <AccordionSummary
@@ -103,7 +105,7 @@ const ReactProjectsList = () => {
               gutterBottom
               // sx={{ color: 'primary.main', fontSize: 20 }}
             >
-              useMemo sample projects{' '}
+              useMemo
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -166,15 +168,6 @@ const ReactProjectsList = () => {
                     useCallback + React.memo [ Cart + CartItem ]
                   </Link>
                 </li>
-
-                {/* <li>
-                  <Link to="/useRef-Debouncing">useRef [ Debouncing ]</Link>
-                </li>
-                <li>
-                  <Link to="/useRef-UncontrolledForm">
-                    useRef [ Uncontrolled Input with useRef ]
-                  </Link>
-                </li> */}
               </Box>
 
               <Typography
@@ -193,7 +186,7 @@ const ReactProjectsList = () => {
             id="panel2-header"
           >
             <Typography variant="h5" gutterBottom>
-              useRef for real-time validation and Uncontrolled Form{' '}
+              useRef
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -210,6 +203,38 @@ const ReactProjectsList = () => {
               <li>
                 <Link to="/useRef-UncontrolledForm">
                   UnControledForm with useRef for email validation{' '}
+                </Link>
+              </li>
+            </Box>
+          </AccordionDetails>
+        </Accordion>
+
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2-content"
+            id="panel2-header"
+          >
+            <Typography variant="h5" gutterBottom>
+              {/* useReducer : manage state using a reducer function, similar to how
+              Redux works. */}
+              useReducer
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Box
+              component="ul"
+              sx={style.ul}
+              style={{ marginLeft: '-20px', marginTop: '8px' }}
+            >
+              <li>
+                <Link to="/useReducer-complexState">
+                  CheckoutForm: managing a complex form state with useReducer
+                </Link>
+              </li>
+              <li>
+                <Link to="/useReducer-counter">
+                  Simple Counter with useReducer
                 </Link>
               </li>
             </Box>
