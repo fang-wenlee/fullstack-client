@@ -18,6 +18,10 @@ import Cart from './components/performance/Cart';
 //================================================
 import DebounceSearch from './components/useRef/DebounceSearch';
 import UncontrolledForm from './components/useRef/UncontrolledForm';
+//=============================================================
+
+import UseReducerForm from './components/useReducer/UseReducerForm';
+import SimpleCounter from './components/useReducer/SimpleCounter';
 
 import './index.css';
 import './App.css';
@@ -85,6 +89,9 @@ function App() {
             path="/useRef-UncontrolledForm"
             element={<UncontrolledForm />}
           />
+
+          <Route path="/useReducer-complexState" element={<UseReducerForm />} />
+          <Route path="/useReducer-counter" element={<SimpleCounter />} />
           <Route
             path="*"
             element={
